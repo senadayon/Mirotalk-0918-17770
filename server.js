@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
 
         shareScreenBtn.addEventListener('click', async () => {
             if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
-                alert('エラー: お使いのスマホ・ブラウザは画面共有 API に非対応です。AndroidのChrome最新版などでお試しください。');
+                alert('エラー: お使いのiPhone・ブラウザは画面共有に対応していません。iOSのバージョンを最新にするか、対応ブラウザでお試しください。');
                 return;
             }
 
