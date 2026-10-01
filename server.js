@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// 画面のHTMLをサーバーから返す設定
 app.get('/', (req, res) => {
     res.send(`
 <!DOCTYPE html>
@@ -17,7 +16,7 @@ app.get('/', (req, res) => {
         .btn-container { margin-top: 20px; }
         button { background: #3b82f6; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 8px; margin: 5px; cursor: pointer; }
         button:hover { background: #2563eb; }
-        #shareScreenBtn { background: #10b981; } /* 画面共有ボタンは緑色 */
+        #shareScreenBtn { background: #10b981; }
         #shareScreenBtn:hover { background: #059669; }
     </style>
 </head>
@@ -32,7 +31,6 @@ app.get('/', (req, res) => {
 
     <div class="btn-container">
         <button id="startCamBtn">カメラ起動</button>
-        <!-- スマホでも絶対に消えない画面共有ボタン -->
         <button id="shareScreenBtn">画面共有を開始</button>
     </div>
 
@@ -42,7 +40,6 @@ app.get('/', (req, res) => {
         const startCamBtn = document.getElementById('startCamBtn');
         const shareScreenBtn = document.getElementById('shareScreenBtn');
 
-        // 1. カメラとマイクの起動処理
         startCamBtn.addEventListener('click', async () => {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
@@ -52,11 +49,9 @@ app.get('/', (req, res) => {
             }
         });
 
-        // 2. 画面共有処理（スマホでも動作するようにガードを外した状態）
         shareScreenBtn.addEventListener('click', async () => {
-            // ブラウザが対応しているかチェック
             if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
-                alert('エラー: お使いのスマホ・ブラウザは画面共有 API (getDisplayMedia) に非対応です。AndroidのChrome最新版などでお試しください。');
+                alert('エラー: お使いのスマホ・ブラウザは画面共有 API に非対応です。AndroidのChrome最新版などでお試しください。');
                 return;
             }
 
@@ -79,7 +74,6 @@ app.get('/', (req, res) => {
     `);
 });
 
-// サーバーを起動
 app.listen(PORT, () => {
-    console.log(\`Server is running on port \${PORT}\`);
+    console.log('Server is running on port ' + PORT);
 });
