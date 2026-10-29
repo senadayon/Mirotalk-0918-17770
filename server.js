@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 </head>
 <body>
 
-    <h1>MiroTalk P2P (スマホ画面共有対応版)</h1>
+    <h1>画面共有サイト</h1>
     
     <div>
         <video id="localVideo" autoplay playsinline muted></video>
